@@ -1,0 +1,21 @@
+services:
+  socat:
+    image: alpine/socat
+    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+    user: root
+    volumes:
+      - $HOME/.docker/run/docker.sock:/var/run/docker.sock
+    network_mode: host
+
+  minikube:
+    build: .
+    privileged: true
+    network_mode: host
+    environment:
+      - ARCH=${ARCH}
+      - MOUNT_DIR=${MOUNT_DIR}
+      - DOCKER_HOST=tcp://localhost:2375
+    volumes:
+      - ${MOUNT_DIR}:/shared
+    depends_on:
+      - socat
