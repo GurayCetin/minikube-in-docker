@@ -17,7 +17,8 @@ Ensure the following are installed on your system:
 - **`Dockerfile`**: Builds a container with Minikube, Kubernetes tools, and dependencies.
 - **`docker-compose.yaml`**: Defines services for `socat` and `minikube`.
 - **`entrypoint.sh`**: Script to start Minikube and deploy the ShinyProxy application.
-- **`shinyproxy/kustomize/base/application.yaml`**: Configuration for the ShinyProxy application.
+- **`shinyproxy/kustomize/base`**: Base Kubernetes manifests for ShinyProxy.
+- **`shinyproxy/kustomize/overlays`**: Environment-specific configurations for ShinyProxy.
 - **`.env`**: Environment variables for Docker Compose.
 
 ---
